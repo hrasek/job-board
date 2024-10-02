@@ -28,6 +28,5 @@
                 @endif
             @endforeach
         </div>
-
     </x-card>
 </x-layout>
