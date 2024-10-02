@@ -1,5 +1,5 @@
 <x-layout>
-    <x-breadcrumbs class="mb-4 ml-4" :links="['Jobs' => route('jobs.index')]" />
+    <x-breadcrumbs class="mb-4" :links="['Jobs' => route('jobs.index')]" />
 
     <x-card class="mb-4 text-sm" x-data="">
         <form x-ref="filters" id="filtering-form" action="{{route('jobs.index')}}" method="GET">
