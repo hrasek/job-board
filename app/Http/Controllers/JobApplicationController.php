@@ -25,14 +25,20 @@ class JobApplicationController extends Controller
     {
         $this->authorize('apply', $job);
 
+        $validatedData = $request->validate([
+            'expected_salary' => 'required|min:1|max:1000000',
+            'cv' => 'required|file|mimes:pdf|max:2048',
+        ]);
+
+        $file = $request->file('cv');
+        $path = $file->store('cvs', 'private');
+
         $job->jobApplications()->create([
             'user_id' => $request->user()->id,
-            ...$request->validate([
-                'expected_salary' => 'required|min:1|max:1000000',
-            ])
-//            'job_id' => $job->id,
-//            'expected_salary' => $request->expected_salary,
+            'expected_salary' => $validatedData['expected_salary'],
+            'cv_path' => $path,
         ]);
+
         return redirect()->route('jobs.show', $job)->with('success', 'Job application submitted successfully.');
     }
     public function destroy(string $id)
