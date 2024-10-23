@@ -65,14 +65,16 @@ class JobPolicy
      */
     public function restore(User $user, Job $job): bool
     {
-        return $job->employer->user_id == $user->id;    }
+        return $job->employer->user_id == $user->id;
+    }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
     public function forceDelete(User $user, Job $job): bool
     {
-        return $job->employer->user_id == $user->id;    }
+        return $job->employer->user_id == $user->id;
+    }
 
     public function apply(User $user, Job $job): bool
     {
